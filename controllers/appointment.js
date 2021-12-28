@@ -1,9 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import appointment from '../models/appointment';
+import appointment from '../models/appointment.js';
 
 const router = express.Router();
+
 
 export const getAppointments = async(req,res)=>{
     try{
@@ -14,14 +15,17 @@ export const getAppointments = async(req,res)=>{
     catch(error){
         res.status(404).json({message: error.message});
     }
-}
+};
 export const createAppointment = async(req,res)=>{
-   const {firstName,lastName,middleName,suffix,email,contactNumber,concents,TOC} = req.body;
-   try{
-       const result = await appointment.create({email,firstName,lastName,middleName,suffix,contactNumber,concents,TOC});
-       res.status(201).json({result});
-   }
-   catch(error){
-       res.status(500).json({message: error.message});
-   }
-}
+  const appoints = req.body;
+  const newAppoint = new appointment({ ...appoints, reqAppoint:req.userId, dateAndtime: new Date().toISOString()})
+
+  try{
+      await newAppoint.save();
+      res.status(201).json(newAppoint);
+  }catch(error){
+      res.status(409).json({message:error.message});
+  }
+
+};
+export default router;

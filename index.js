@@ -9,6 +9,7 @@ import {} from 'dotenv/config'
 
 
 import userRouter from './routes/user.js';
+import appointmentRouter from './routes/appointment.js';
 const app = express();
 
 
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({limit:"30mb",extended:true}));
 app.use(cors());
 
 app.use('/user',userRouter);
+app.use('/appointment',appointmentRouter);
 
 const PORT = process.env.PORT || 5000;
 
