@@ -1,7 +1,8 @@
 import express from 'express';
 
 const router = express.Router();
-import { createAppointment,getAppointments } from '../controllers/appointment.js';
+import { createAppointment,getAppointments,cancelAppointment } from '../controllers/appointment.js';
 router.get('/appointmentsss', getAppointments);
 router.post('/', createAppointment);
+router.patch('/:id/cancelAppointment', cancelAppointment);
 export default router;
