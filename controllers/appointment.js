@@ -30,7 +30,7 @@ export const createAppointment = async(req,res)=>{
 };
 
 export const cancelAppointment = async (req,res) =>{
-    const {id} =req.params;
+    const {id} = req.params;
     const {appointmentStatus}= req.body;
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Appointment with id: ${id}`);
   

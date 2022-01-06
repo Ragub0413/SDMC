@@ -23,15 +23,14 @@ app.use('/user',userRouter);
 app.use('/appointment',appointmentRouter);
 app.use('/staff',staffRouter);
 
-
+const CONNECTION_DB = process.env.ATLAS_URI;
 const PORT = process.env.PORT || 5000;
 
 
-const CONNECTION_DB = process.env.ATLAS_URI;
-mongoose.connect(CONNECTION_DB, {useNewUrlParser:true, useUnifiedTopology:true})
-     .then(()=>app.listen(PORT, ()=>console.log(`Server running on port: ${PORT}`)))
-    .catch((error) => console.log(`${error} did not connect`));
 
+mongoose.connect(CONNECTION_DB, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
+  .catch((error) => console.log(`${error} did not connect`));
 
 
 //mongoose.set('useFindAndModify', false);

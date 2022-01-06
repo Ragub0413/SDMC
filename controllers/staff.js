@@ -1,17 +1,17 @@
 import express from 'express';
-
 import mongoose from 'mongoose';
+import StaffInformation from '../models/staff.js';
 
-import StaffInfo from '../models/staff.js'
+
 
 const router = express.Router();
 
 export const createNewStaff = async(req,res)=>{
    const {firstName,lastName,suffix,contactNumber,email,position,staffIdNumber} = req.body;
    try{
-       const oldUser = await StaffInfo.findOne({email});
+       const oldUser = await StaffInformation.findOne({email});
        if(oldUser) return res.status(400).json({message:'Staff already exist'});
-       const result = await StaffInfo.create({ email,lastName,firstName,suffix,contactNumber,position});
+       const result = await StaffInformation.create({ email,lastName,firstName,suffix,contactNumber,position});
        res.status(201).json({ result});
     } catch (error) {
         res.status(500).json({ message: "Something went wrong" });
@@ -21,7 +21,7 @@ export const createNewStaff = async(req,res)=>{
 }
 export const getStaffinfo = async(req,res)=>{
     try{
-        const staffInformation = await StaffInfo.find();
+        const staffInformation = await StaffInformation.find();
         res.status(200).json(staffInformation);
 
     }
@@ -29,9 +29,11 @@ export const getStaffinfo = async(req,res)=>{
         res.status(404).json({message: error.message});
     }
 };
-export const deleteStaff = async(res,req)=>{
+export const deleteStaffData = async (req,res) => {
     const {id} = req.params;
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Staff with id ${id}`);
-    await StaffInfo.findOneAndRemove(id);
-    res.json({message: "Staff deleted successfully"});
-};
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No id ');
+
+    await StaffInformation.findByIdAndRemove(id).exec();
+    res.json({message: "Deleted"});
+}

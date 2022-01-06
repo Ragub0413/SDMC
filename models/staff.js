@@ -6,8 +6,9 @@ const staffSchema = mongoose.Schema({
     suffix: {type: String},
     contactNumber: {type: String,required: true},   
     email:{type:String},
-    staffIdNumber:{type: Number, default: 0}
+    id: { type: String },
     
     
 });
-export default mongoose.model("Staff",staffSchema);
+var StaffInformation = mongoose.model("Staff",staffSchema);
+export default StaffInformation;
