@@ -23,6 +23,10 @@ app.use('/user',userRouter);
 app.use('/appointment',appointmentRouter);
 app.use('/staff',staffRouter);
 
+app.get('/',(req,res)=>{
+  res.send('Hello to SDMC World');
+})
+
 const CONNECTION_DB = process.env.ATLAS_URI;
 const PORT = process.env.PORT || 5000;
 
