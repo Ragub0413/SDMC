@@ -35,7 +35,7 @@ export const cancelAppointment = async (req,res) =>{
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Appointment with id: ${id}`);
   
     const cancelled = {appointmentStatus, _id: id};
-
+ 
     await appointment.findByIdAndUpdate(id, cancelled,{new: true});
 
   

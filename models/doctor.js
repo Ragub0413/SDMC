@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const staffSchema = mongoose.Schema({
+const doctorScheme = mongoose.Schema({
     firstName: {type: String, required: true},
     lastName: {type: String, required: true},
     middleName:{type: String},
@@ -7,9 +7,11 @@ const staffSchema = mongoose.Schema({
     contactNumber: {type: String,required: true},   
     email:{type:String},
     id: { type: String },
-    StaffId:{type: Number}
+    StaffId:{type: Number},
+    password:{type: String},
+    
     
     
 });
-var StaffInformation = mongoose.model("Staff",staffSchema);
-export default StaffInformation;
+var DoctorInformation = mongoose.model("Doctor",doctorScheme);
+export default DoctorInformation;
