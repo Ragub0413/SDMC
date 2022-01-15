@@ -41,4 +41,19 @@ export const cancelAppointment = async (req,res) =>{
   
     res.json(cancelled);
 }
+export const updateAppointment  = async (req,res)=>{
+    const {id}= req.params;
+    const appoints = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Appointment with id: ${id}`);
+    
+    const updateAppointments = {...appoints,dateAndtime:new Date().toISOString(), _id: id};
+ 
+    await appointment.findByIdAndUpdate(id, updateAppointments,{new: true});
+
+  
+    res.json(updateAppointments);
+    
+}
 export default router;
+

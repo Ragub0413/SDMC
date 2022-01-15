@@ -10,6 +10,6 @@ const appointmentSchema = mongoose.Schema({
     reqAppoint:{type:String},
     concernType:{type:String},
     dateAndTime: {type: Date, default: new Date()},
-    
+    appointmentStatus: {type:String, default: 'Pending'}
 });
 export default mongoose.model("Appointment",appointmentSchema);

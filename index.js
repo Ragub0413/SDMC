@@ -37,5 +37,5 @@ mongoose.connect(CONNECTION_DB, { useNewUrlParser: true, useUnifiedTopology: tru
   .catch((error) => console.log(`${error} did not connect`));
 
 
-//mongoose.set('useFindAndModify', false);
+mongoose.set('useFindAndModify', false);
 //app.listen(PORT, ()=>console.log(`Server running on port: ${PORT}`))

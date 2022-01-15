@@ -7,7 +7,10 @@ const staffSchema = mongoose.Schema({
     contactNumber: {type: String,required: true},   
     email:{type:String},
     id: { type: String },
-    StaffId:{type: Number}
+    StaffId:{type: String},
+    password:{type:String},
+    level:{type:String, required: true},
+    position:{type:String}
     
     
 });
